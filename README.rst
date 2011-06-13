@@ -19,19 +19,23 @@ Make sure to check Github_ for the latest updates.
 .. _Github: https://github.com/vayn/vinergy
 
 
-Installation
-------------
 
 Requirement
-^^^^^^^^^^^
+-----------
 
 web.py_, pymongo_, pygments_, and nosetests_, paste_ (for testing)
 
 .. _web.py: http://webpy.org
-.. _pymongo: pypi.python.org/pypi/pymongo/
+.. _pymongo: http://pypi.python.org/pypi/pymongo/
 .. _pygments: http://pygments.org
 .. _nosetests: http://somethingaboutorange.com/mrl/projects/nose/
 .. _paste: http://pythonpaste.org
+
+
+Installation
+------------
+
+See ``docs/INSTALL.rst``
 
 
 Usage
@@ -42,6 +46,7 @@ Usage
 
     ~ % curl http://p.vim-cn.com/wuitE?vim
     ~ % firefox http://p.vim-cn.com/wuitE?vim
+
 
 Credit
 ------
