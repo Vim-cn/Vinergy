@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # vim: set fileencoding=utf-8:
 # @Author: Vayn a.k.a. VT <vayn@vayn.de>
 # @Name: util.py
@@ -57,7 +57,8 @@ def render(code, formatter, syntax):
   '''Render code with pygments'''
   if not syntax:
     lexer = guess_lexer(code)
-  syntax = syntax.lower()
+  else:
+    syntax = syntax.lower()
   try:
     lexer = pygments.lexers.get_lexer_by_name(syntax)
   except:

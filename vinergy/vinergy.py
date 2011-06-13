@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # vim: set fileencoding=utf-8:
 # @Author: Vayn a.k.a. VT <vayn@vayn.de>
 # @Name: vinergy.py
