@@ -45,6 +45,7 @@ Usage
        http://p.vim-cn.com/wuitE
 
     ~ % curl http://p.vim-cn.com/wuitE?vim
+
     ~ % firefox http://p.vim-cn.com/wuitE?vim
 
 
