@@ -62,4 +62,4 @@ Special thanks to rupa_ and his sprunge_.
 License
 -------
 
-This program is released unders ``GPL3`` license, see ``LICENSE`` for more detail.
+This program is released under ``GPL3`` license, see ``LICENSE`` for more detail.
