@@ -5,8 +5,8 @@
 # @Date: 2011年06月11日 星期六 06时27分02秒
 
 '''
-  vinergy.util
-  ~~~~~~~~~~~~
+  vinergy.util.util
+  ~~~~~~~~~~~~~~~~~
 
   Handy tools for Vinergy.
 '''

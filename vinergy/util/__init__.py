@@ -4,3 +4,9 @@
 # @Name: __init__.py
 # @Date: 2011年06月15日 星期三 12时19分52秒
 
+'''
+  vinergy.util
+  ~~~~~~~~~~~~
+
+  Vinergy util package
+'''

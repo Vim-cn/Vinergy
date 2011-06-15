@@ -4,7 +4,12 @@
 # @Name: b52.py
 # @Date: 2011年06月15日 星期三 10时26分25秒
 
-'''Base 52 translator'''
+'''
+  vinergy.util.b52
+  ~~~~~~~~~~~~~~~~
+
+  Base 52 translator
+'''
 from config import PAD
 
 
