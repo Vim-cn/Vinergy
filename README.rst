@@ -42,11 +42,11 @@ Usage
 -----
 
     ~ % cat bin/pyconsole.vim | curl -F 'vimcn=<-' http://p.vim-cn.com
-       http://p.vim-cn.com/wuitE
+       http://p.vim-cn.com/cbc
 
-    ~ % curl http://p.vim-cn.com/wuitE?vim
+    ~ % curl http://p.vim-cn.com/cbc?vim
 
-    ~ % firefox http://p.vim-cn.com/wuitE?vim
+    ~ % firefox http://p.vim-cn.com/cbc?vim
 
 
 Credit
