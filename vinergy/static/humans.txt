@@ -1,0 +1,11 @@
+/* TEAM */
+Chef: Vayn
+Contact: vayn [at] vayn.de
+Twitter: @vayn
+From: Xi'an, China
+
+/* SITE */
+Last update: 2011/06/14
+Lanuage: English / Chinese
+Doctype: HTML5
+Editor: Vim 7.3

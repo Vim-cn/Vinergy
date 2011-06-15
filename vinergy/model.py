@@ -13,11 +13,12 @@
 
 __all__ = ['get_code_by_name',
            'get_code_by_oid',
+           'get_count',
            'insert_code',
            'update_code',
           ]
 
-from pymongo import Connection
+from pymongo import Connection, DESCENDING
 
 from config import DBURL
 
@@ -36,12 +37,19 @@ def get_code_by_oid(oid):
   code = codebase.find_one({'_id': oid})
   return code or None
 
-def insert_code(oid, name, content, date):
+def get_count():
+  '''Get count of latest snippet'''
+  doc = codebase.find(None, {'content': 0}).sort('count', DESCENDING).limit(1)
+  count = doc[0]['count']
+  return int(count)
+
+def insert_code(oid, name, content, count, date):
   '''Insert new code to database'''
   code = {'_id': oid,
           'name': name,
           'content': [('raw', content)],
           'syntax': ['raw'],
+          'count': count,
           'date': date,
          }
   codebase.insert(code)

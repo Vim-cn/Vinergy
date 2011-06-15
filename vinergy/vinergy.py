@@ -16,9 +16,9 @@ import time
 import datetime
 from hashlib import md5
 
-import util
 import model
 import config
+from util import util
 
 
 ### Url mappings
@@ -44,13 +44,20 @@ class Index:
     if not got: # Show frontpage
       return render.index(config.URL)
     else: # Show code
+      if got.rfind('/') != -1:
+        # Url looks like wuitE/vim
+        syntax = got.rsplit('/', 1)[1].lower()
+        got = got.rsplit('/', 1)[0]
+      else:
+        syntax = None
       doc = model.get_code_by_name(got)
       # "got" nothing
       if not doc:
         raise web.notfound(got + ' not found\n')
       codes = dict(doc['content'])
 
-      syntax = web.ctx.query[1:].lower()
+      if syntax is None:
+        syntax = web.ctx.query[1:].lower()
       if not syntax:
         return codes['raw']
 
@@ -80,12 +87,10 @@ class Index:
       if r is not None:
         name = r['name']
       else:
-        name = util.new_name()
-        while model.get_code_by_name(name):
-          name = util.new_name()
+        name, count = util.name_count()
         epoch = time.mktime(datetime.datetime.utctimetuple(datetime.\
                                                            datetime.utcnow()))
-        model.insert_code(oid, name, code, epoch)
+        model.insert_code(oid, name, code, count, epoch)
       raise util.response(' ' + config.URL + '/' + name + '\n')
     except AttributeError:
       status = '500 Internal Server Error'
