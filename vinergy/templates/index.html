@@ -1,6 +1,9 @@
 $def with (url)
+
+$var snippet:
+
 <pre>
-vinergy(1)                         VINERGY                           vinerge(1)
+vinergy(1)                         VINERGY                           vinergy(1)
 
 NAME
     Vinergy: CLI Pastebin within VimEnergy
@@ -15,9 +18,9 @@ EXAMPLES
     <span style="color:#ffc000" >~</span> % cat bin/pyconsole.vim | curl -F 'vimcn=&lt;-' $url
        ${url}/cbc
 
-    <span style="color:#ffc000" >~</span> % curl http://p.vim-cn.com/cbc?vim
-    <span style="color:#ffc000" >~</span> % wget -qO- http://p.vim-cn.com/cbc/vim
-    <span style="color:#ffc000" >~</span> % firefox ${url}/cbc?vim
+    <span style="color:#ffc000" >~</span> % curl ${url}/cbc?js
+    <span style="color:#ffc000" >~</span> % wget -qO- ${url}/cbc/js
+    <span style="color:#ffc000" >~</span> % firefox ${url}/cbc?js
 
 SEE ALSO
     http://github.com/vayn/vinergy
@@ -25,5 +28,5 @@ SEE ALSO
 POWERED BY
     <a href="http://webpy.org" target="_blank"><img src="/static/webpy.png" align="absmiddle" border="0"></a> &nbsp; <a href="http://www.mongodb.org" target="_blank"><img src="/static/mongodb.png" align="absmiddle" border="0"></a> &nbsp; <a href="http://pygments.org" target="_blank"><img src="/static/pygments.png" align="absmiddle" border="0"></a>
 
-                                11 June 2011                         vinerge(1)
+                                11 June 2011                         vinergy(1)
 </pre>

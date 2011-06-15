@@ -1,11 +1,15 @@
 /* TEAM */
-Chef: Vayn
-Contact: vayn [at] vayn.de
-Twitter: @vayn
-From: Xi'an, China
+  ID: Vayn
+  Contact: vayn [at] vayn.de
+  Twitter: @vayn
+  From: Xi'an, China
+
+  ID: lilydjwg
+  Contact: lilydjwg [at] gmail.com
+  From: China
 
 /* SITE */
-Last update: 2011/06/14
-Lanuage: English / Chinese
-Doctype: HTML5
-Editor: Vim 7.3
+  Last update: 2011/06/15
+  Lanuage: English / Chinese
+  Doctype: HTML5
+  Editor: Vim 7.3

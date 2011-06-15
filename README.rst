@@ -19,7 +19,6 @@ Make sure to check Github_ for the latest updates.
 .. _Github: https://github.com/vayn/vinergy
 
 
-
 Requirement
 -----------
 

@@ -21,7 +21,7 @@ config = {
   'author_email': 'vayn@vayn.de',
   'url': 'http://p.vim-cn.com',
   'download_url': 'https://github.com/vayn/vinergy',
-  'version': '0.2',
+  'version': '0.3',
   'license': 'GPL3',
   'install_requires': ['nose', 'paste', 'web.py', 'pymongo', 'pygments'],
   'packages': ['vinergy'],

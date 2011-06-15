@@ -13,6 +13,7 @@
 __all__ = ['guess_ext',
            'is_termua',
            'name_count',
+           'norm_filetype',
            'render',
            'response',
           ]
@@ -26,6 +27,7 @@ from pygments.lexers import guess_lexer
 
 from model import get_count
 from b52 import b52_encode
+from formatter import MyHTMLFormatter
 
 
 def guess_ext(code):
@@ -34,6 +36,7 @@ def guess_ext(code):
   mime = lexer.mimetypes[0]
   ext = mimetypes.guess_extension(mime)[1:]
   return ext
+
 
 def is_termua(ua):
   '''Determine the given UA is of terminal or not'''
@@ -44,15 +47,26 @@ def is_termua(ua):
       return True
   return False
 
+
 def name_count(count=0):
   '''Generate snippet name and count'''
   try:
     count = get_count()
-  except IndexError:
+  except:
     pass
   count += 1
   name = b52_encode(count)
   return (name, count)
+
+
+def norm_filetype(syntax):
+  """Normalize filetype"""
+  try:
+    lexer = pygments.lexers.get_lexer_by_name(syntax)
+    return lexer.name.lower()
+  except:
+    return 'raw'
+
 
 def render(code, formatter, syntax):
   '''Render code with pygments'''
@@ -66,11 +80,14 @@ def render(code, formatter, syntax):
     lexer = pygments.lexers.TextLexer()
   f = getattr(formatters, formatter)
   if f.__name__ == 'HtmlFormatter':
-    newcode = highlight(code, lexer, f(full=True, style='manni', lineanchors='n',
+    f = MyHTMLFormatter
+    newcode = highlight(code, lexer, f(style='manni', lineanchors='n',
+                                       anchorlinenos=True,
                                        linenos='table', encoding='utf-8'))
   else:
     newcode = highlight(code, lexer, f())
   return newcode
+
 
 def response(data, status='200 OK', headers=None):
   '''Return custom response'''
