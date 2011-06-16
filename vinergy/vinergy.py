@@ -55,16 +55,26 @@ class Index:
       if syntax is None:
         syntax = web.ctx.query[1:].lower()
       if not syntax:
-        return codes['raw']
+        return codes['text']
+      # NOTE: syntax may fall back to text
       syntax = util.norm_filetype(syntax)
 
       is_t = util.is_termua(web.ctx.env['HTTP_USER_AGENT'])
       s = lambda s: 't_'+s if is_t else s
+
       # If there is rendered code in database already, just return it
-      code = codes.get(s(syntax), None)
-      if code is not None: return code if is_t else render.code(code)
-      # Otherwise we should render raw first
-      code = codes['raw']
+      if syntax != 'text':
+        code = codes.get(s(syntax), None)
+      else:
+        # Fallback text
+        code = codes['text']
+      if code is not None:
+        if is_t or syntax == 'text':
+          return code
+        else:
+          return render.code(code)
+      # Otherwise we should render text first
+      code = codes['text']
       if is_t:
         # term
         r = util.render(code, 'TerminalFormatter', syntax)

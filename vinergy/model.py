@@ -47,8 +47,8 @@ def insert_code(oid, name, content, count, date):
   '''Insert new code to database'''
   code = {'_id': oid,
           'name': name,
-          'content': [('raw', content)],
-          'syntax': ['raw'],
+          'content': [('text', content)],
+          'syntax': ['text'],
           'count': count,
           'date': date,
          }
