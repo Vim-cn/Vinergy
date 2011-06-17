@@ -15,7 +15,20 @@ from pygments import formatters
 from pygments.formatters import html
 
 
-html._escape_html_table[ord(' ')] = u'&nbsp;'
+try:
+  html._escape_html_table[ord(' ')] = u'&nbsp;'
+except AttributeError: # pygments 1.3
+  def escape_html(text):
+    """Escape &, <, > as well as single and double quotes for HTML."""
+    return text.replace('&', '&amp;').  \
+                replace('<', '&lt;').   \
+                replace('>', '&gt;').   \
+                replace('"', '&quot;'). \
+                replace("'", '&#39;').  \
+                replace(" ", '&nbsp;')
+  html.escape_html = escape_html
+  del escape_html
+
 class MyHTMLFormatter(formatters.HtmlFormatter):
   def wrap(self, source, outfile):
     return self._wrap_code(source)
