@@ -50,6 +50,14 @@ Usage
     ~ % firefox http://p.vim-cn.com/cbc?js
 
 
+Author
+------
+
+  Vayn <vayn at vayn dot de>
+
+  lilydjwg <lilydjwg at gmail dot com>
+
+
 Credit
 ------
 
