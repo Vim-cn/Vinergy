@@ -53,9 +53,9 @@ Usage
 Author
 ------
 
-  Vayn <vayn at vayn dot de>
+Vayn <vayn at vayn dot de>
 
-  lilydjwg <lilydjwg at gmail dot com>
+lilydjwg <lilydjwg at gmail dot com>
 
 
 Credit
