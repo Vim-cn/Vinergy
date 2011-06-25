@@ -12,10 +12,11 @@ SYNOPSIS
     &lt;command&gt; | curl -F 'vimcn=&lt;-' $url
 
 DESCRIPTION
-    add <a href='http://pygments.org/docs/lexers/'>?&lt;lang&gt;</a> to resulting url for line numbers and syntax highlighting
+    add <a href='http://pygments.org/docs/lexers/'>?&lt;lang&gt;</a> or <a href='http://pygments.org/docs/lexers/'>/&lt;lang&gt;</a> to resulting url for line numbers and syntax
+    highlighting
 
 EXAMPLES
-    <span style="color:#ffc000" >~</span> % cat bin/pyconsole.vim | curl -F 'vimcn=&lt;-' $url
+    <span style="color:#ffc000" >~</span> % cat bin/code.js | curl -F 'vimcn=&lt;-' $url
        ${url}/cbc
 
     <span style="color:#ffc000" >~</span> % curl ${url}/cbc?js
