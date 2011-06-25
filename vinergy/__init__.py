@@ -12,10 +12,10 @@
   .. _Vinergy source code:
     http://github.com/vayn/vinergy
 
-  :author: Vayn <vayn@vayn.de>
+  :author: Vayn <vayn@vayn.de>, lilydjwg <lilydjwg@gmail.com>
   :copyright: Copyright 2011, Vincent T.
   :license: GPLv3+, see LICENSE for details.
 '''
 
-__version__ = '0.2'
+__version__ = '0.3'
 __docformat__ = 'restructuredtext'

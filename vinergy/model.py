@@ -18,7 +18,6 @@ __all__ = ['get_code_by_name',
            'update_code',
           ]
 
-import bson
 from pymongo import Connection, DESCENDING
 
 from config import DBURL
@@ -35,7 +34,6 @@ def get_code_by_name(name):
 
 def get_code_by_oid(oid):
   '''Get code by oid (_id)'''
-  oid = bson.Binary(oid, bson.binary.MD5_SUBTYPE)
   code = codebase.find_one({'_id': oid})
   return code or None
 
@@ -47,7 +45,7 @@ def get_count():
 
 def insert_code(oid, name, content, count, date):
   '''Insert new code to database'''
-  code = {'_id': bson.Binary(oid, bson.binary.MD5_SUBTYPE),
+  code = {'_id': oid,
           'name': name,
           'content': [('text', content)],
           'syntax': ['text'],

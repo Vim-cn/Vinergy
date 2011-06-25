@@ -12,6 +12,7 @@
 '''
 import os
 import web
+import bson
 import time
 import datetime
 from hashlib import md5
@@ -93,7 +94,8 @@ class Index:
       code = web.input().vimcn
       # Content must be longer than "print 'Hello, world!'"
       if len(code) < 21: raise ValueError
-      oid = md5(unicode(code).encode('utf8')).hexdigest()
+      oid = bson.Binary(md5(unicode(code).encode('utf8')).digest(),
+                        bson.binary.MD5_SUBTYPE)
       r = model.get_code_by_oid(oid)
       if r is not None:
         name = r['name']
