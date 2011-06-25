@@ -23,7 +23,6 @@ window.addEventListener('hashchange', function(e){
 var lines = document.getElementsByClassName('line');
 for(var i=0, len=lines.length; i<len; i++){
   lines[i].addEventListener('mouseover', function(e){
-    console.log(e);
     var t = e.target;
     while(t.nodeName != 'DIV'){
       t = t.parentNode;
