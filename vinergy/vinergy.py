@@ -93,7 +93,8 @@ class Index:
     try:
       code = web.input().vimcn
       # Content must be longer than "print 'Hello, world!'"
-      if len(code) < 21: raise ValueError
+      # or smaller than 256 KiB
+      if (len(code) < 21) or (len(code)/1024 > 256): raise ValueError
       oid = bson.Binary(md5(unicode(code).encode('utf8')).digest(),
                         bson.binary.MD5_SUBTYPE)
       r = model.get_code_by_oid(oid)
@@ -110,7 +111,8 @@ class Index:
       raise util.response('Oops. Please Check your command.\n', status)
     except ValueError:
       status = '400 Bad Request'
-      tip = 'Hi, content must be longer than \'print "Hello, world!"\'\n'
+      tip = 'Hi, content must be longer than \'print "Hello, world!"\'\n' +\
+            'or smaller than 256 KiB\n'
       tip = util.render(tip, 'TerminalFormatter', 'py')
       raise util.response(tip, status)
 
