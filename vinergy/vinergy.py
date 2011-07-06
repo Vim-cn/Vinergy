@@ -56,7 +56,7 @@ class Index:
       if syntax is None:
         syntax = web.ctx.query[1:].lower()
       if not syntax:
-        return codes['text']
+        raise util.response(codes['text'])
       # NOTE: syntax may fall back to text
       syntax = util.norm_filetype(syntax)
 
@@ -71,7 +71,7 @@ class Index:
         code = codes['text']
       if code is not None:
         if is_t or syntax == 'text':
-          return code
+          raise util.response(code)
         else:
           return render.code(code)
       # Otherwise we should render text first
@@ -93,8 +93,8 @@ class Index:
     try:
       code = web.input().vimcn
       # Content must be longer than "print 'Hello, world!'"
-      # or smaller than 256 KiB
-      if (len(code) < 21) or (len(code)/1024 > 256): raise ValueError
+      # or smaller than 64 KiB
+      if (len(code) < 21) or (len(code)/1024 > 64): raise ValueError
       oid = bson.Binary(md5(unicode(code).encode('utf8')).digest(),
                         bson.binary.MD5_SUBTYPE)
       r = model.get_code_by_oid(oid)
@@ -112,7 +112,7 @@ class Index:
     except ValueError:
       status = '400 Bad Request'
       tip = 'Hi, content must be longer than \'print "Hello, world!"\'\n' +\
-            'or smaller than 256 KiB\n'
+            'or smaller than 64 KiB\n'
       tip = util.render(tip, 'TerminalFormatter', 'py')
       raise util.response(tip, status)
 
