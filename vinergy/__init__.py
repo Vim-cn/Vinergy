@@ -17,5 +17,5 @@
   :license: GPLv3+, see LICENSE for details.
 '''
 
-__version__ = '0.3'
+__version__ = '0.4'
 __docformat__ = 'restructuredtext'

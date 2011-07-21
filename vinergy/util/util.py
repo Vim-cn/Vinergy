@@ -28,6 +28,7 @@ from pygments.lexers import guess_lexer
 from model import get_count
 from b52 import b52_encode
 from formatter import MyHTMLFormatter
+from filter import TabFilter
 
 
 def guess_ext(code):
@@ -78,6 +79,7 @@ def render(code, formatter, syntax):
     lexer = pygments.lexers.get_lexer_by_name(syntax)
   except:
     lexer = pygments.lexers.TextLexer()
+  lexer.add_filter(TabFilter(tabsize=8))
   f = getattr(formatters, formatter)
   if f.__name__ == 'HtmlFormatter':
     f = MyHTMLFormatter
