@@ -16,7 +16,7 @@ CLI Pastebin within VimEnergy
 
 Make sure to check Github_ for the latest updates.
 
-.. _Github: https://github.com/vayn/vinergy
+.. _Github: https://github.com/Vim-cn/Vinergy
 
 
 Requirement
