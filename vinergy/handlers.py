@@ -30,6 +30,7 @@ class BaseHandler(RequestHandler):
   def get_template_namespace(self):
     ns = super(BaseHandler, self).get_template_namespace()
     ns['url'] = self.request.full_url()
+    ns['path'] = self.request.path
     return ns
 
 class ShowCode(BaseHandler):
