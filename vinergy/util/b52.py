@@ -11,10 +11,8 @@
   Base 52 translator
 '''
 
-# FIXME: shouldn't import config
-from ..config import PAD
-
 ALPHABET = 'bcdfghjklmnpqrstvwxyz0123456789BCDFGHJKLMNPQRSTVWXYZ'
+PAD = 4
 
 def b52_encode(num, alphabet=ALPHABET):
   '''Encode a nubmer in Base X'''

@@ -1,8 +1,4 @@
-#!/usr/bin/env python2
 # vim: set fileencoding=utf-8:
-# @Author: Vayn a.k.a. VT <vayn@vayn.de>
-# @Name: util.py
-# @Date: 2011年06月11日 星期六 06时27分02秒
 
 '''
   vinergy.util.util

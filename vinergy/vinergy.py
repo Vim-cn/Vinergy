@@ -28,11 +28,17 @@ routers = (
   (r'/(.*)', handlers.ShowCode),
 )
 
+def setup():
+  from .config import PAD
+  from .util import b52
+  b52.PAD = PAD
+
 def main():
   define("port", default=8000, help="run on the given port", type=int)
   define("debug", default=False, help="debug mode", type=bool)
 
   tornado.options.parse_command_line()
+  setup()
   application = tornado.web.Application(
     routers,
     gzip = True,

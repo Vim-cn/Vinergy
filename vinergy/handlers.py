@@ -92,7 +92,6 @@ class Index(BaseHandler):
 
   def post(self):
     '''Insert new code'''
-    # FIXME: PAD isn't used
     try:
       code = self.get_argument('vimcn')
       # Content must be longer than "print 'Hello, world!'"
