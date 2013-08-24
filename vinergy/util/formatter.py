@@ -55,8 +55,8 @@ class MyHTMLFormatter(formatters.HtmlFormatter):
     for t, line in inner:
       if t:
         lncount += 1
-      # some are unicodes, some are strs. what a mess!
-      if isinstance(line, str):
+      # in Python 2.7, some are unicodes, some are strs. what a mess!
+      if isinstance(line, bytes):
         line = line.decode('utf-8')
       dummyoutfile.write(line)
 

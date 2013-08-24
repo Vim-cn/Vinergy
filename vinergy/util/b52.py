@@ -10,8 +10,9 @@
 
   Base 52 translator
 '''
-from config import PAD
 
+# FIXME: shouldn't import config
+from ..config import PAD
 
 ALPHABET = 'bcdfghjklmnpqrstvwxyz0123456789BCDFGHJKLMNPQRSTVWXYZ'
 
@@ -26,7 +27,7 @@ def b52_encode(num, alphabet=ALPHABET):
   s = []
   while num:
     rem = num % base
-    num = num / base
+    num = num // base
     s.append(alphabet[rem])
   return ''.join(reversed(s))
 

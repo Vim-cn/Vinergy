@@ -1,41 +1,42 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # vim:fileencoding=utf-8
-# @Author: Vayn a.k.a. VT <vayn@vayn.de>
-# @Name: setup.py
-# @Date: 2011年06月06日 星期一 23时17分46秒
 
 try:
   from setuptools import setup
 except ImportError:
   from distutils.core import setup
 
+import vinergy
 
 with open('README.rst') as file:
   long_description = file.read()
 
-config = {
-  'name': 'Vinergy',
-  'description': 'Vinergy - CLI Pastebin within VimEnergy',
-  'long_description': long_description,
-  'author': 'Vayn',
-  'author_email': 'vayn@vayn.de',
-  'url': 'http://p.vim-cn.com',
-  'download_url': 'https://github.com/vayn/vinergy',
-  'version': '0.3',
-  'license': 'GPL3',
-  'install_requires': ['nose', 'paste', 'web.py', 'pymongo', 'pygments'],
-  'packages': ['vinergy'],
-  'classifiers': [
+setup(
+  name = 'Vinergy',
+  version = vinergy.__version__,
+  entry_points = {
+    'console_scripts': [
+      'vinergy = vinergy.vinergy:main',
+    ],
+  },
+  description = 'Vinergy - CLI Pastebin within VimEnergy',
+  long_description = long_description,
+  author = 'Vayn & lilydjwg',
+  author_email = 'vayn@vayn.de & lilydjwg@gmail.com',
+  url = 'http://p.vim-cn.com',
+  download_url = 'https://github.com/Vim-cn/vinergy',
+  license = 'GPL3',
+  install_requires = ['tornado', 'pymongo', 'pygments'],
+  packages = ['vinergy'],
+  classifiers = [
     'Development Status :: 4 - Beta',
     'Environment :: Web Environment',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: GNU General Public License (GPL) ',
-    'Operating System :: POSIX :: Linux',
     'Programming Language :: Python',
+    'Programming Language :: Python 2.7',
+    'Programming Language :: Python 3',
+    'Programming Language :: Python 3.3',
     'Topic :: Internet',
   ],
-}
-
-setup(**config)
-
-
+)

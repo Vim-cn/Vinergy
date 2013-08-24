@@ -1,21 +1,18 @@
-#!/usr/bin/env python2
-# vim: set fileencoding=utf-8
-
 '''
-  Vinergy
-  ~~~~~~~
+Vinergy
+~~~~~~~
 
-  Vinergy is a pastebin app written in Python.
+Vinergy is a pastebin app written in Python.
 
-  It supports both web page and terminal highlight output.
+It supports both web page and terminal highlight output.
 
-  .. _Vinergy source code:
-    http://github.com/vayn/vinergy
+.. _Vinergy source code:
+  http://github.com/Vim-cn/vinergy
 
-  :author: Vayn <vayn@vayn.de>, lilydjwg <lilydjwg@gmail.com>
-  :copyright: Copyright 2011, Vincent T.
-  :license: GPLv3+, see LICENSE for details.
+:author: Vayn <vayn@vayn.de>, lilydjwg <lilydjwg@gmail.com>
+:copyright: (c) 2011, Vincent T. (c) 2013, lilydjwg.
+:license: GPLv3+, see LICENSE for details.
 '''
 
-__version__ = '0.4'
+__version__ = '0.5'
 __docformat__ = 'restructuredtext'

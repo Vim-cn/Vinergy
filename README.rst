@@ -22,6 +22,8 @@ Make sure to check Github_ for the latest updates.
 Requirement
 -----------
 
+.. FIXME web.py -> tornado
+
 web.py_, pymongo_, pygments_, and nosetests_, paste_ (for testing)
 
 .. _web.py: http://webpy.org
@@ -63,7 +65,7 @@ Credit
 
 Special thanks to rupa_ and his sprunge_.
 
-.. _rupa: https://github.com/rupa/
+.. _rupa: https://github.com/rupa
 .. _sprunge: http://sprunge.us
 
 

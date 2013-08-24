@@ -2,24 +2,22 @@
 Installation
 ============
 
+.. TODO fix all broken sentences
+
 1. Make sure to install all required modules.
 
-2. If you want to do the test, to enter the directory of Vinergy, then::
-
-    ~ % nosetests
-
-  **Note** ``~ %`` is NOT part of command.
-
-3. Run::
+2. Run::
 
     ~ % python setup.py install
 
+  **Note** ``~ %`` is NOT part of command.
+
   You can also extract ``vinergy/`` to the place wherever you want to.
 
-4. Open vinergy/config.py with your favorite editor, change ``URL`` (site url)
+3. Open vinergy/config.py with your favorite editor, change ``URL`` (site url)
    and ``DBURL`` (database url) to fit your server environment.
 
-5. Start service::
+4. Start service::
 
     ~ % ./vinergy/vinergy.py
 

@@ -1,7 +1,5 @@
-$def with (url)
-
-$var snippet:
-
+{% extends 'base.html' %}
+{% block page %}
 <pre>
 vinergy(1)                         VINERGY                           vinergy(1)
 
@@ -9,7 +7,7 @@ NAME
     Vinergy: CLI Pastebin within VimEnergy
 
 SYNOPSIS
-    &lt;command&gt; | curl -F 'vimcn=&lt;-' $url
+    &lt;command&gt; | curl -F 'vimcn=&lt;-' {{ url }}
 
 DESCRIPTION
     add <a href='http://pygments.org/docs/lexers/'>?&lt;lang&gt;</a> or <a href='http://pygments.org/docs/lexers/'>/&lt;lang&gt;</a> to resulting url for line numbers and syntax
@@ -17,21 +15,26 @@ DESCRIPTION
 
 EXAMPLES
     <span style="color:#ffc000" >~</span> % cat bin/code.js | curl -F 'vimcn=&lt;-' $url
-       ${url}/cbc
+       {{ url }}cbc
 
-    <span style="color:#ffc000" >~</span> % curl ${url}/cbc?js
-    <span style="color:#ffc000" >~</span> % wget -qO- ${url}/cbc/js
-    <span style="color:#ffc000" >~</span> % firefox ${url}/cbc?js
+    <span style="color:#ffc000" >~</span> % curl {{ url }}cbc?js
+    <span style="color:#ffc000" >~</span> % wget -qO- {{ url }}cbc/js
+    <span style="color:#ffc000" >~</span> % firefox {{ url }}cbc?js
 
 URLS
     <a href="http://img.vim-cn.com/">http://img.vim-cn.com/</a>
         A CLI image pastebin
 
+VERSION
+    0.5
+
 SEE ALSO
     <a href="http://github.com/Vim-cn/vinergy">http://github.com/Vim-cn/vinergy</a>
 
 POWERED BY
-    <a href="http://webpy.org" target="_blank"><img src="/static/webpy.png" align="absmiddle" border="0"></a> &nbsp; <a href="http://www.mongodb.org" target="_blank"><img src="/static/mongodb.png" align="absmiddle" border="0"></a> &nbsp; <a href="http://pygments.org" target="_blank"><img src="/static/pygments.png" align="absmiddle" border="0"></a>
+    <a href="http://www.tornadoweb.org/" target="_blank"><img src="/static/tornado.png" align="absmiddle" border="0"></a> &nbsp; <a href="http://www.mongodb.org" target="_blank"><img src="/static/mongodb.png" align="absmiddle" border="0"></a> &nbsp; <a href="http://pygments.org" target="_blank"><img src="/static/pygments.png" align="absmiddle" border="0"></a>
 
-                                11 June 2011                         vinergy(1)
+                                 20 Aug 2013                         vinergy(1)
 </pre>
+{% end %}
+{# vim:se ft=html syntax=html.tornadotmpl: #}

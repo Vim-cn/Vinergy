@@ -1,4 +1,4 @@
-body { margin: 0; padding: 0 }
+body { margin: 0; padding: 0; font-size: 1.5em; }
 .highlight { line-height: 125%; margin: 0; padding: 0; font-family: monospace }
 .highlight td { padding: 0; }
 .highlight td.code { width: 100%; }

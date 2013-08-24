@@ -1,41 +1,27 @@
-$def with (page)
 <!DOCTYPE HTML>
 <html lang="en">
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Vinergy - CLI Pastebin within VimEnergy</title>
 <link rel='shortcut icon' href="/static/favicon.ico" type="image/x-icon" />
 <link type="text/plain" rel="author" href="/static/humans.txt" />
-$# At snippet page {{{
-$if page.snippet == 'snippet':
-  <link rel="stylesheet" href="/static/code.css" type="text/css" />
-  <!--[if IE]>
-  <script type="text/javascript">
-  if(confirm('你的浏览器不支持显示本页内容，点击“确定”去下载火狐，点击“取消”下载谷歌浏览器。'){
-    window.location = 'http://www.mozilla.com/en-US/firefox/all.html';
-  }else{
-    window.location = 'http://www.google.com/chrome';
-  }
-  </script>
-  <noscript><meta http-equiv="refresh" content="0; url=http://www.mozilla.com/en-US/firefox/all.html" /></noscript>
-  <![endif]-->
-$# }}}
 
-$:page
+{% if path != '/' %}
+<link rel="stylesheet" href="/static/code.css" type="text/css" />
+<!--[if IE]>
+<script type="text/javascript">
+if(confirm('你的浏览器不支持显示本页内容，点击“确定”去下载火狐，点击“取消”下载谷歌浏览器。'){
+  window.location = 'http://www.mozilla.com/en-US/firefox/all.html';
+}else{
+  window.location = 'http://www.google.com/chrome';
+}
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=http://www.mozilla.com/en-US/firefox/all.html" /></noscript>
+<![endif]-->
+{% end %}
+
+{% block page %}{% end %}
 
 <!-- Start Google Analytics tracking code -->
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-1504835-11']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
 <!-- End Google Analytics tracking code -->
 </html>
-<!-- vim: set foldmethod=marker:foldmarker=<div,</div>: -->
+{# vim:se syntax=html.tornadotmpl: #}

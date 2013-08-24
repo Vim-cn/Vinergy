@@ -10,26 +10,27 @@
 
   Handy tools for Vinergy.
 '''
-__all__ = ['guess_ext',
-           'is_termua',
-           'name_count',
-           'norm_filetype',
-           'render',
-           'response',
-          ]
+__all__ = [
+  'guess_ext',
+  'is_terminal',
+  'name_count',
+  'norm_filetype',
+  'render',
+  'response',
+]
 
-import web
 import mimetypes
 import pygments.lexers
 from pygments import formatters
 from pygments import highlight
 from pygments.lexers import guess_lexer
 
-from model import get_count
-from b52 import b52_encode
-from formatter import MyHTMLFormatter
-from filter import TabFilter
+from ..model import get_count
+from .b52 import b52_encode
+from .formatter import MyHTMLFormatter
+from .filter import TabFilter
 
+term_ua = ('wget', 'curl')
 
 def guess_ext(code):
   '''Guess file ext with code'''
@@ -39,26 +40,25 @@ def guess_ext(code):
   return ext
 
 
-def is_termua(ua):
+def is_terminal(ua):
   '''Determine the given UA is of terminal or not'''
   ua = ua.lower()
-  term_ua = ('wget', 'curl')
   for tua in term_ua:
     if ua.find(tua) != -1:
       return True
   return False
-
 
 def name_count(count=0):
   '''Generate snippet name and count'''
   try:
     count = get_count()
   except:
+    import traceback
+    traceback.print_exc()
     pass
   count += 1
   name = b52_encode(count)
   return (name, count)
-
 
 def norm_filetype(syntax):
   """Normalize filetype"""
@@ -67,7 +67,6 @@ def norm_filetype(syntax):
     return lexer.name.lower()
   except:
     return 'text'
-
 
 def render(code, formatter, syntax):
   '''Render code with pygments'''
@@ -89,11 +88,3 @@ def render(code, formatter, syntax):
   else:
     newcode = highlight(code, lexer, f())
   return newcode
-
-
-def response(data, status='200 OK', headers=None):
-  '''Return custom response'''
-  if not headers:
-    headers = {'Content-Type': 'text/plain'}
-  response = web.webapi.HTTPError(status, headers, data)
-  return response
