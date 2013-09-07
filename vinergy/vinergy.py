@@ -35,6 +35,7 @@ def setup():
 
 def main():
   define("port", default=8000, help="run on the given port", type=int)
+  define("address", default='', help="run on the given IP address", type=str)
   define("debug", default=False, help="debug mode", type=bool)
 
   tornado.options.parse_command_line()
@@ -47,7 +48,7 @@ def main():
     static_path = staticdir,
   )
   http_server = HTTPServer(application, xheaders=True)
-  http_server.listen(options.port)
+  http_server.listen(options.port, options.address)
   try:
     tornado.ioloop.IOLoop.instance().start()
   except KeyboardInterrupt:
