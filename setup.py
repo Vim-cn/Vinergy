@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # vim:fileencoding=utf-8
 
-try:
-  from setuptools import setup
-except ImportError:
-  from distutils.core import setup
-
+from setuptools import setup, find_packages
 import vinergy
 
 with open('README.rst') as file:
@@ -27,7 +23,7 @@ setup(
   download_url = 'https://github.com/Vim-cn/vinergy',
   license = 'GPL3',
   install_requires = ['tornado>=3.1', 'pymongo', 'pygments'],
-  packages = ['vinergy'],
+  packages = find_packages,
   classifiers = [
     'Development Status :: 4 - Beta',
     'Environment :: Web Environment',

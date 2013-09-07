@@ -14,5 +14,5 @@ It supports both web page and terminal highlight output.
 :license: GPLv3+, see LICENSE for details.
 '''
 
-__version__ = '0.5'
+__version__ = '0.6dev'
 __docformat__ = 'restructuredtext'
