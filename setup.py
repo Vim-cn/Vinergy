@@ -23,7 +23,7 @@ setup(
   download_url = 'https://github.com/Vim-cn/vinergy',
   license = 'GPL3',
   install_requires = ['tornado>=3.1', 'pymongo', 'pygments'],
-  packages = find_packages,
+  packages = find_packages(),
   classifiers = [
     'Development Status :: 4 - Beta',
     'Environment :: Web Environment',
