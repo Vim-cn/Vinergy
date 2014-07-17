@@ -62,7 +62,7 @@ def norm_filetype(syntax):
     lexer = pygments.lexers.get_lexer_by_name(syntax)
     return lexer.name.lower()
   except:
-    return 'text'
+    return 'text only'
 
 def render(code, formatter, syntax):
   '''Render code with pygments'''
