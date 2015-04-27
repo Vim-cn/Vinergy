@@ -110,7 +110,7 @@ class Index(BaseHandler):
         epoch = time.mktime(datetime.datetime.utctimetuple(
           datetime.datetime.utcnow()))
         model.insert_code(oid, name, code, count, epoch)
-      self.finish('http://%s/%s\n' % (self.request.host, name))
+      self.finish('%s://%s/%s\n' % (self.request.protocol, self.request.host, name))
     except MissingArgumentError:
       self.set_status(400)
       self.finish('Oops. Please Check your command.\n')
