@@ -14,23 +14,19 @@ Vinergy
 CLI Pastebin within VimEnergy
 -----------------------------
 
-Make sure to check Github_ for the latest updates.
+Make sure to check GitHub_ for the latest updates.
 
-.. _Github: https://github.com/Vim-cn/Vinergy
+.. _GitHub: https://github.com/Vim-cn/Vinergy
 
 
-Requirement
------------
+Requirements
+------------
 
-.. FIXME web.py -> tornado
+tornado_, pymongo_, pygments_
 
-web.py_, pymongo_, pygments_, and nosetests_, paste_ (for testing)
-
-.. _web.py: http://webpy.org
+.. _tornado: http://www.tornadoweb.org/
 .. _pymongo: http://pypi.python.org/pypi/pymongo/
 .. _pygments: http://pygments.org
-.. _nosetests: http://somethingaboutorange.com/mrl/projects/nose/
-.. _paste: http://pythonpaste.org
 
 
 Installation
@@ -42,18 +38,18 @@ See ``docs/INSTALL.rst``
 Usage
 -----
 
-    ~ % cat bin/pyconsole.vim | curl -F 'vimcn=<-' http://p.vim-cn.com
-       http://p.vim-cn.com/cbc
+    ~ % cat bin/pyconsole.vim | curl -F 'vimcn=<-' https://cfp.vim-cn.com
+       https://cfp.vim-cn.com/cbc
 
-    ~ % curl http://p.vim-cn.com/cbc?js
+    ~ % curl https://cfp.vim-cn.com/cbc?js
 
-    ~ % wget -qO- http://p.vim-cn.com/cbc/js
+    ~ % wget -qO- https://cfp.vim-cn.com/cbc/js
 
-    ~ % firefox http://p.vim-cn.com/cbc?js
+    ~ % firefox https://cfp.vim-cn.com/cbc?js
 
 
-Author
-------
+Authors
+-------
 
 Vayn <vayn at vayn dot de>
 
@@ -72,4 +68,4 @@ Special thanks to rupa_ and his sprunge_.
 License
 -------
 
-This program is released under ``GPL3`` license, see ``LICENSE`` for more detail.
+This program is released under ``GPLv3`` license, see ``LICENSE`` for more detail.
