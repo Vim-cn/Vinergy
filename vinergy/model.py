@@ -1,10 +1,10 @@
-from pymongo import Connection
+from pymongo import MongoClient
 
 from .config import DBINFO
 
-db = Connection(**DBINFO).vinergy
+db = MongoClient(**DBINFO).vinergy
 codebase = db.codebase
-codebase.ensure_index('count')
+codebase.create_index('count')
 
 def get_code_by_name(name):
   '''Get code by name'''
@@ -35,7 +35,7 @@ def insert_code(oid, name, content, count, date):
     'count': count,
     'date': date,
   }
-  codebase.insert(code)
+  codebase.insert_one(code)
 
 def update_code(name, content, syntax):
   '''
@@ -45,4 +45,4 @@ def update_code(name, content, syntax):
     'content': [syntax, content],
     'syntax': syntax,
   }
-  codebase.update({'name': name}, {'$push': code})
+  codebase.update_one({'name': name}, {'$push': code})
