@@ -16,11 +16,9 @@ Installation
 
 3. Import ``dbsetup.sql`` to setup tables.
 
-4. Open vinergy/config.py with your favorite editor, change ``DBINFO`` (database connection string) to fit your server environment.
+4. Start service::
 
-5. Start service::
-
-    ~ % ./vinergy/vinergy.py
+    ~ % ./vinergy/vinergy.py --db=psql-connection-string
 
   Done.
 

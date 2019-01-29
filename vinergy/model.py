@@ -2,14 +2,13 @@ import hashlib
 
 import asyncpg
 
-from .config import DBINFO
 from .util.b52 import b52_encode
 
 DB_CONN = None
 
-async def setup():
+async def setup(db):
   global DB_CONN
-  DB_CONN = await asyncpg.connect(DBINFO)
+  DB_CONN = await asyncpg.connect(db)
 
 async def get_code_by_name(name, syntax):
   row = await DB_CONN.fetchrow(

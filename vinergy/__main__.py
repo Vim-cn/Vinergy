@@ -76,17 +76,20 @@ routers = (
 )
 
 def setup():
-  from .config import PAD
   from .util import b52
   from . import model
 
-  b52.PAD = PAD
+  b52.PAD = tornado.options.name_len
+  db = tornado.options.db
+
   loop = asyncio.get_event_loop()
-  loop.run_until_complete(model.setup())
+  loop.run_until_complete(model.setup(db))
 
 def main():
   define("port", default=8000, help="run on the given port", type=int)
   define("address", default='', help="run on the given IP address", type=str)
+  define("db", default='', help="PostgreSQL database connection string", type=str)
+  define("name-len", default=3, help="Name length of code snippets", type=int)
   define("debug", default=False, help="debug mode", type=bool)
 
   tornado.options.parse_command_line()
