@@ -23,7 +23,7 @@ setup(
   license = 'GPL3',
   install_requires = ['tornado>=5', 'asyncpg', 'pygments'],
   packages = find_packages(),
-  package_data = {'vinergy': ['static/*']},
+  package_data = {'vinergy': ['static/*', 'templates/*']},
   exclude_package_data = {'vinergy': ['*~']},
   zip_safe = True,
   classifiers = [

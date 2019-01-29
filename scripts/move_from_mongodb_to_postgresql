@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import asyncio
+import sys
+import datetime
+import hashlib
+
+import pymongo
+import asyncpg
+
+async def main(mongourl, pgurl):
+  mongo = pymongo.MongoClient(host=mongourl).vinergy.codebase
+  pg = await asyncpg.connect(pgurl)
+  async with pg.transaction():
+
+    for i, doc in enumerate(mongo.find({}, ['content', 'name', 'date'])):
+      content = dict(doc['content'])['text']
+      name = doc['name']
+      dt = datetime.datetime.fromtimestamp(doc['date'])
+      print(i, name, dt)
+
+      h = hashlib.sha1(content.encode('utf-8'))
+      sha1sum = h.digest()
+      await pg.execute(
+        '''insert into raw_code
+          (name, content, sha1sum, created_at) values
+          ($1, $2, $3, $4)
+        ''', name, content, sha1sum, dt)
+
+if __name__ == '__main__':
+  coro = main(sys.argv[1], sys.argv[2])
+  asyncio.run(coro)
