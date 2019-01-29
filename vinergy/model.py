@@ -1,4 +1,5 @@
 import hashlib
+from datetime import datetime
 
 import asyncpg
 
@@ -12,8 +13,10 @@ async def setup(db):
 
 async def get_code_by_name(name, syntax):
   row = await DB_CONN.fetchrow(
-    'select content from rendered_code where name = $1 and syntax = $2',
-    name, syntax,
+    '''update rendered_code set visited_at = $1
+       where name = $2 and syntax = $3
+       returning content
+    ''', datetime.now(), name, syntax,
   )
   if row is None:
     raise FileNotFoundError
@@ -21,7 +24,9 @@ async def get_code_by_name(name, syntax):
 
 async def get_raw_code_by_name(name):
   row = await DB_CONN.fetchrow(
-    'select content from raw_code where name = $1', name)
+    '''update raw_code set visited_at = $1 where name = $2
+       returning content
+    ''', datetime.now(), name)
   if row is None:
     raise FileNotFoundError
   return row['content']

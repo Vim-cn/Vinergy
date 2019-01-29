@@ -61,5 +61,5 @@ def render(code, formatter, syntax):
                                        anchorlinenos=True,
                                        linenos='table', encoding='utf-8'))
   else:
-    newcode = highlight(code, lexer, f())
+    newcode = highlight(code, lexer, f()).encode('utf-8')
   return newcode

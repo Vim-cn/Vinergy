@@ -79,8 +79,8 @@ def setup():
   from .util import b52
   from . import model
 
-  b52.PAD = tornado.options.name_len
-  db = tornado.options.db
+  b52.PAD = tornado.options.options.name_len
+  db = tornado.options.options.db
 
   loop = asyncio.get_event_loop()
   loop.run_until_complete(model.setup(db))
