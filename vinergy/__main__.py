@@ -24,8 +24,11 @@ class ResourceFileHandler(tornado.web.RequestHandler):
 
     package, name = p.rsplit('/', 1)
     package = package.replace('/', '.')
-    with importlib.resources.open_binary(package, name) as f:
-      data = f.read()
+    try:
+      with importlib.resources.open_binary(package, name) as f:
+        data = f.read()
+    except FileNotFoundError:
+      raise tornado.web.HTTPError(404)
 
     content_type = self.get_content_type(p)
     if content_type:
