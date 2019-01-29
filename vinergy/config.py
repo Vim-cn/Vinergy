@@ -1,8 +1,5 @@
-### Database parameters
-DBINFO = {
-  'host': 'localhost',
-  'port': 27017,
-}
+### Database parameters (postgresql connection string)
+DBINFO = ''
 
 ### Url length
 PAD = 3

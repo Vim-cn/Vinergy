@@ -6,23 +6,14 @@
 
   Handy tools for Vinergy.
 '''
-__all__ = [
-  'guess_ext',
-  'is_terminal',
-  'name_count',
-  'norm_filetype',
-  'render',
-  'response',
-]
 
 import mimetypes
+
 import pygments.lexers
 from pygments import formatters
 from pygments import highlight
 from pygments.lexers import guess_lexer
 
-from ..model import get_count
-from .b52 import b52_encode
 from .formatter import MyHTMLFormatter
 from .filter import TabFilter
 
@@ -43,18 +34,6 @@ def is_terminal(ua):
     if ua.find(tua) != -1:
       return True
   return False
-
-def name_count(count=0):
-  '''Generate snippet name and count'''
-  try:
-    count = get_count()
-  except:
-    import traceback
-    traceback.print_exc()
-    pass
-  count += 1
-  name = b52_encode(count)
-  return (name, count)
 
 def norm_filetype(syntax):
   """Normalize filetype"""

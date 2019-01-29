@@ -1,48 +1,62 @@
-from pymongo import MongoClient
+import hashlib
+
+import asyncpg
 
 from .config import DBINFO
+from .util.b52 import b52_encode
 
-db = MongoClient(**DBINFO).vinergy
-codebase = db.codebase
-codebase.create_index('count')
+DB_CONN = None
 
-def get_code_by_name(name):
-  '''Get code by name'''
-  return codebase.find_one({'name': name})
+async def setup():
+  global DB_CONN
+  DB_CONN = await asyncpg.connect(DBINFO)
 
-def get_codename_by_oid(oid):
-  '''Get code by oid (_id)'''
-  doc = codebase.find_one({'_id': oid}, ['name'])
-  if doc:
-    return doc['name']
+async def get_code_by_name(name, syntax):
+  row = await DB_CONN.fetchrow(
+    'select content from rendered_code where name = $1 and syntax = $2',
+    name, syntax,
+  )
+  if row is None:
+    raise FileNotFoundError
+  return row['content']
 
-def get_count():
-  '''Get count of latest snippet'''
-  try:
-    doc = list(codebase.find(None, ['count']).sort('count', direction=-1).limit(1))[0]
-  except KeyError:
-    return None
-  else:
-    return int(doc['count'])
+async def get_raw_code_by_name(name):
+  row = await DB_CONN.fetchrow(
+    'select content from raw_code where name = $1', name)
+  if row is None:
+    raise FileNotFoundError
+  return row['content']
 
-def insert_code(oid, name, content, count, date):
-  '''Insert new code to database'''
-  code = {
-    '_id': oid,
-    'name': name,
-    'content': [('text', content)],
-    'syntax': ['text'],
-    'count': count,
-    'date': date,
-  }
-  codebase.insert_one(code)
+async def get_codename_by_content(content):
+  h = hashlib.sha1(content.encode('utf-8'))
+  sha1sum = h.digest()
+  row = await DB_CONN.fetchrow(
+    '''select name from raw_code
+       where sha1sum = $1''', sha1sum)
+  if row is None:
+    raise FileNotFoundError
+  return row['name']
 
-def update_code(name, content, syntax):
-  '''
-    update doc with new rendered code.
-  '''
-  code = {
-    'content': [syntax, content],
-    'syntax': syntax,
-  }
-  codebase.update_one({'name': name}, {'$push': code})
+async def insert_code(content):
+  h = hashlib.sha1(content.encode('utf-8'))
+  sha1sum = h.digest()
+  row = await DB_CONN.fetchrow(
+    '''insert into raw_code
+       (content, sha1sum) values
+       ($1, $2) returning id
+    ''', content, sha1sum)
+
+  name = b52_encode(row['id'])
+  await DB_CONN.execute(
+    '''update raw_code
+       set name = $1 where id = $2''',
+    name, row['id'])
+
+  return name
+
+async def update_code(name, content, syntax):
+  await DB_CONN.execute(
+    '''insert into rendered_code
+       (name, content, syntax) values
+       ($1, $2, $3)''',
+    name, content, syntax)

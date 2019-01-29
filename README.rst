@@ -22,10 +22,10 @@ Make sure to check GitHub_ for the latest updates.
 Requirements
 ------------
 
-tornado_, pymongo_, pygments_
+tornado_, asyncpg_, pygments_
 
 .. _tornado: http://www.tornadoweb.org/
-.. _pymongo: http://pypi.python.org/pypi/pymongo/
+.. _asyncpg: https://pypi.org/project/asyncpg/
 .. _pygments: http://pygments.org
 
 
