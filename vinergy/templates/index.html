@@ -14,19 +14,22 @@ DESCRIPTION
     highlighting
 
 EXAMPLES
+    <span style="color:#ffc000" >~</span> % curl -T bin/code.js {{ url }}
+       {{ url }}cbc
+
     <span style="color:#ffc000" >~</span> % cat bin/code.js | curl -F 'vimcn=&lt;-' {{ url }}
        {{ url }}cbc
 
-    <span style="color:#ffc000" >~</span> % curl {{ url }}cbc?js
-    <span style="color:#ffc000" >~</span> % wget -qO- {{ url }}cbc/js
-    <span style="color:#ffc000" >~</span> % firefox {{ url }}cbc?js
+    <span style="color:#ffc000" >~</span> % curl {{ url }}cbc/js
+    <span style="color:#ffc000" >~</span> % wget -qO- {{ url }}cbc?js
+    <span style="color:#ffc000" >~</span> % firefox {{ url }}cbc/js
 
 URLS
     <a href="https://img.vim-cn.com/">https://img.vim-cn.com/</a>
         A CLI image pastebin
 
 VERSION
-    0.9.1
+    0.10
 
 SEE ALSO
     <a href="https://github.com/Vim-cn/vinergy">https://github.com/Vim-cn/vinergy</a>

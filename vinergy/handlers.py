@@ -64,6 +64,14 @@ class ShowCode(BaseHandler):
         self.render('code.html', code=r)
       await model.update_code(codeid, r, syntax_)
 
+  async def put(self, filename):
+    try:
+      code = self.request.body.decode('utf-8')
+      await store_code(self, code)
+    except UnicodeDecodeError:
+      self.set_status(400)
+      self.finish('Oops. Please check your code encoding.\n')
+
 class Index(BaseHandler):
   def get(self):
     self.render('index.html')
@@ -72,25 +80,28 @@ class Index(BaseHandler):
     '''Insert new code'''
     try:
       code = self.get_argument('vimcn')
-      # Content must be longer than "print 'Hello, world!'"
-      # or smaller than 64 KiB
-      if len(code) < 23 or len(code) > 64 * 1024:
-        raise ValueError
-
-      try:
-        name = await model.get_codename_by_content(code)
-      except FileNotFoundError:
-        name = await model.insert_code(code)
-
-      self.finish('%s://%s/%s\n' % (
-        self.request.protocol, self.request.host, name))
-
+      await store_code(self, code)
     except MissingArgumentError:
       self.set_status(400)
-      self.finish('Oops. Please Check your command.\n')
-    except ValueError:
-      self.set_status(400)
-      tip = '''Hi, the code snippet must be longer than 'print("Hello, world!")' or shorter than 64 KiB.\n'''
-      tip = util.render(tip, 'TerminalFormatter', 'py')
-      self.finish(tip)
+      self.finish('Oops. Please check your command.\n')
+
+async def store_code(self, code):
+  try:
+    # Content must be longer than "print 'Hello, world!'"
+    # or smaller than 64 KiB
+    if len(code) < 23 or len(code) > 64 * 1024:
+      raise ValueError
+
+    try:
+      name = await model.get_codename_by_content(code)
+    except FileNotFoundError:
+      name = await model.insert_code(code)
+
+    self.finish('%s://%s/%s\n' % (
+      self.request.protocol, self.request.host, name))
+  except ValueError:
+    self.set_status(400)
+    tip = '''Hi, the code snippet must be longer than 'print("Hello, world!")' or shorter than 64 KiB.\n'''
+    tip = util.render(tip, 'TerminalFormatter', 'py')
+    self.finish(tip)
 

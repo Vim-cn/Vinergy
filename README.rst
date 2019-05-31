@@ -41,11 +41,14 @@ Usage
     ~ % cat bin/pyconsole.vim | curl -F 'vimcn=<-' https://cfp.vim-cn.com
        https://cfp.vim-cn.com/cbc
 
+    ~ % curl -T bin/pyconsole.vim https://cfp.vim-cn.com
+       https://cfp.vim-cn.com/cbc
+
     ~ % curl https://cfp.vim-cn.com/cbc?js
 
     ~ % wget -qO- https://cfp.vim-cn.com/cbc/js
 
-    ~ % firefox https://cfp.vim-cn.com/cbc?js
+    ~ % firefox https://cfp.vim-cn.com/cbc/js
 
 
 Authors
