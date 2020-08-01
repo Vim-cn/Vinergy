@@ -28,7 +28,7 @@ class ShowCode(BaseHandler):
         content = await model.get_raw_code_by_name(codeid)
       except FileNotFoundError:
         raise HTTPError(404, codeid + ' not found')
-      self.set_header('Content-Type', 'text/plain')
+      self.set_header('Content-Type', 'text/plain; charset=utf-8')
       self.finish(content)
       return
 
