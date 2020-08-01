@@ -1,5 +1,5 @@
 create table if not exists rendered_code (
-  id serial,
+  id serial primary key,
   name text not null,
   syntax text not null,
   content bytea not null,
@@ -11,7 +11,7 @@ create table if not exists rendered_code (
 create index idx_rendered_code_visited_at on rendered_code (visited_at);
 
 create table if not exists raw_code (
-  id serial,
+  id serial primary key,
   name text unique,
   sha1sum bytea unique not null,
   content text not null,
