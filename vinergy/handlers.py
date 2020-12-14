@@ -88,7 +88,7 @@ class Index(BaseHandler):
 async def store_code(self, code):
   try:
     # Content must be longer than "print 'Hello, world!'"
-    # or smaller than 64 KiB
+    # or smaller than 64 * 1024 characters
     if len(code) < 23 or len(code) > 64 * 1024:
       raise ValueError
 
@@ -101,7 +101,7 @@ async def store_code(self, code):
       self.request.protocol, self.request.host, name))
   except ValueError:
     self.set_status(400)
-    tip = '''Hi, the code snippet must be longer than 'print("Hello, world!")' or shorter than 64 KiB.\n'''
+    tip = '''Hi, the code snippet must be longer than 'print("Hello, world!")' or shorter than 65536 Unicode characters.\n'''
     tip = util.render(tip, 'TerminalFormatter', 'py')
     self.finish(tip)
 
